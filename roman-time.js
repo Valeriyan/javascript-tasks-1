@@ -81,7 +81,7 @@ function formatRomanTime(_hours, _minutes){
     return _hours + ':' + _minutes;
 }
 
-function validInput(inputString){
+function isInputValid(inputString){
     if (inputString === undefined || isNaN(parseInt(inputString))){
         return false;
     }
@@ -90,7 +90,7 @@ function validInput(inputString){
 
 var hours = process.argv[2];
 var minutes = process.argv[3];
-if (!validInput(hours) || !validInput(minutes) || hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
+if (!isInputValid(hours) || !isInputValid(minutes) || hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
     console.log('Время указано не верно');
     console.log('roman-time.js 0<=Hours<24 0<=Minutes<60');
     process.abort();
