@@ -65,7 +65,7 @@ function printRomanTimeAsAscii(_timeInRomanSystem)
 
 function getRomanNumber(arabicNumber)
 {
-    if (arabicNumber === '0' || arabicNumber === '00') {
+    if (parseInt(arabicNumber) === 0) {
         return '-';
     }
 
@@ -81,10 +81,16 @@ function formatRomanTime(_hours, _minutes){
     return _hours + ':' + _minutes;
 }
 
+function validInput(inputString){
+    if (inputString === undefined || isNaN(parseInt(inputString))){
+        return false;
+    }
+    return true;
+}
+
 var hours = process.argv[2];
 var minutes = process.argv[3];
-
-if (hours < 0 || hours > 23 || minutes < 0 || minutes > 59 || hours === undefined || minutes === undefined) {
+if (!validInput(hours) || !validInput(minutes) || hours < 0 || hours > 23 || minutes < 0 || minutes > 59) {
     console.log('Время указано не верно');
     console.log('roman-time.js 0<=Hours<24 0<=Minutes<60');
     process.abort();
